@@ -1,1 +1,3 @@
-export * from "./templates/LoginTemplate.tsx";
+export * from "./templates/LoginTemplate";
+export * from "./atoms/Title";
+export * from "./molecules/Button";
