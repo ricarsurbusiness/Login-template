@@ -1,26 +1,24 @@
-import React from "react";
 import styled from "styled-components";
-import { darken } from "polished";
 
 interface BtnLoginProps {
   onClick?: () => void;
   title?: string;
-  bgcolor?: string;
+  bgcolor: string;
   icon?: React.ReactNode;
   url?: string;
-  color?: string;
+  color: string;
   disabled?: boolean;
   width?: string;
 }
 
-export function BtnLogin({
+export function Button({
   onClick,
   title,
-  bgcolor = "#007bff",
+  bgcolor,
   icon,
   url,
-  color = "#fff",
-  disabled = false,
+  color,
+  disabled,
   width = "auto",
 }: BtnLoginProps) {
   return (
@@ -37,7 +35,7 @@ export function BtnLogin({
         {title && (
           <span className="btn">
             {url ? (
-              <a href={url} target="_blank" rel="noopener noreferrer">
+              <a href={url} target="_blank">
                 {title}
               </a>
             ) : (
@@ -57,37 +55,35 @@ interface ContainerProps {
 }
 
 const Container = styled.button<ContainerProps>`
-  width: ${({ $width }) => $width};
-  background-color: ${({ $bgcolor }) => $bgcolor};
-  color: ${({ $color }) => $color};
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-weight: 700;
   display: flex;
+  font-size: 18px;
+  padding: 10px 25px;
+  border-radius: 16px;
+  background-color: ${(props) => props.$bgcolor};
+  border: 2px solid rgba(50, 50, 50, 0.2);
+  border-bottom: 5px solid rgba(50, 50, 50, 0.2);
+  transform: translate(0, -3px);
+  cursor: pointer;
+  transition: 0.2s;
+  transition-timing-function: linear;
+  color: rgb(${(props) => props.$color});
   align-items: center;
   justify-content: center;
-
+  width: 100%;
+  max-width: ${(props) => props.$width || "300px"};
   .content {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    gap: 12px;
   }
-
-  .btn a {
-    color: inherit;
-    text-decoration: none;
+  &:active {
+    transform: translate(0, 0);
+    border-bottom: 2px solid rgba(50, 50, 50, 0.5);
   }
-
-  &:hover:not(:disabled) {
-    background-color: ${({ $bgcolor }) => darken(0.1, $bgcolor)};
-  }
-
-  &:disabled {
-    background-color: #ccc;
-    color: #666;
-    cursor: not-allowed;
+  &[disabled] {
+    background-color: #646464;
+    cursor: no-drop;
+    box-shadow: none;
   }
 `;
 
