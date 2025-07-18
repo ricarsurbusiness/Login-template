@@ -2,6 +2,7 @@ import { Title } from "../index";
 import { Button } from "../index";
 import styled from "styled-components";
 import { InputText } from "../organisms/InputText";
+import { Line } from "../atoms/Line";
 export function LoginTemplate() {
   return (
     <Container>
@@ -14,14 +15,14 @@ export function LoginTemplate() {
           boxShadow: "0px 1px 50px rgba(0, 0, 0, 1)",
         }}
       >
-        <Title $padding="25px">LoginTemplate</Title>
+        <Title $padding="25px">Login</Title>
         <form>
           <div className="w-full max-w-[350px] mx-auto ">
-            <InputText text="white" color2="#1cb0f6">
-              <input className="form__field" placeholder="Correo" />
+            <InputText text="white" color2="#1cb0f6" label="Correo">
+              <input className="form__field" placeholder=" " />
             </InputText>
-            <InputText text="white" color2="#1cb0f6">
-              <input className="form__field" placeholder="Contraseña" />
+            <InputText text="white" color2="#1cb0f6" label="Contraseña">
+              <input className="form__field" placeholder=" " />
             </InputText>
             <Button
               title="Iniciar sesión"
@@ -30,6 +31,9 @@ export function LoginTemplate() {
             />
           </div>
         </form>
+        <Line>
+          <span>O</span>
+        </Line>
       </div>
     </Container>
   );

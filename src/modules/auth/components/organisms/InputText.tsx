@@ -5,12 +5,18 @@ interface InputTextProps {
   children: ReactNode;
   text: string;
   color2: string;
+  label: string; // Nueva prop para el label
 }
 
-export function InputText({ children, text, color2 }: InputTextProps) {
+export function InputText({ children, text, color2, label }: InputTextProps) {
   return (
     <Container $text={text} $color2={color2}>
-      <div className="form__group field">{children}</div>
+      <div className="form__group field">
+        {children}
+        <label htmlFor="" className="form__label">
+          {label}
+        </label>
+      </div>
     </Container>
   );
 }
@@ -52,10 +58,7 @@ const Container = styled.div<ContainerProps>`
     background: inherit;
     transition: border-color 0.2s;
     width: 94%;
-    &::placeholder {
-      color: #78b9b5;
-      opacity: 0.8; /* asegura visibilidad */
-    }
+
     &.disabled {
       color: 58A0C8;
       background: 78B9B5;
@@ -65,14 +68,46 @@ const Container = styled.div<ContainerProps>`
     }
   }
 
-  .form__field:placeholder-shown ~ .form__label {
+  .form__label {
+    position: absolute;
+    top: 12px;
+    left: 12px;
     font-size: 17px;
-    cursor: text;
+    color: #78b9b5;
+    font-weight: normal;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: transparent;
+    padding: 0 4px;
   }
 
+  /* Cuando el input tiene foco */
   .form__field:focus {
     font-weight: 700;
     border: 2px solid #1cb0f6;
+  }
+
+  /* Cuando el input tiene foco o contenido, el label se mueve arriba */
+  .form__field:focus ~ .form__label,
+  .form__field:not(:placeholder-shown) ~ .form__label {
+    top: -10px;
+    left: 8px;
+    font-size: 14px;
+    color: #1cb0f6;
+    font-weight: 600;
+    background: #205781;
+    padding: 0 6px;
+    border-radius: 4px;
+  }
+
+  /* Cuando el input está en placeholder-shown (vacío) */
+  .form__field:placeholder-shown ~ .form__label {
+    top: 12px;
+    left: 12px;
+    font-size: 17px;
+    color: #78b9b5;
+    font-weight: normal;
+    background: transparent;
   }
 
   .form__field:required,
