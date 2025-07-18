@@ -30,7 +30,7 @@ const Container = styled.div<ContainerProps>`
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   width: 100%;
 
   .form__group {

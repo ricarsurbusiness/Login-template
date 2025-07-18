@@ -31,7 +31,7 @@ export function Button({
       onClick={onClick}
     >
       <section className="content">
-        {icon && <Icon $color={color}>{icon}</Icon>}
+        <Icon $color={color}>{icon}</Icon>
         {title && (
           <span className="btn">
             {url ? (
@@ -87,9 +87,14 @@ const Container = styled.button<ContainerProps>`
   }
 `;
 
-const Icon = styled.span<{ $color: string }>`
-  color: ${({ $color }) => $color};
+interface IconProps {
+  $color: string;
+}
+
+const Icon = styled.span<IconProps>`
+  color: ${(props) => props.$color};
   display: flex;
   align-items: center;
+  text-align: center;
   justify-content: center;
 `;
